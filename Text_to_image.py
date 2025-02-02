@@ -106,8 +106,6 @@ def encode_descriptions_with_padding(text_list, vocab, max_length=None, pad_toke
     tokenized = tokenize_expressions(text_list)
     encoded_descriptions = remove_duplicates([[vocab.get(expr, vocab[pad_token]) for expr in desc] for desc in tokenized])
 
-
-
     # Determine the maximum length
     if max_length is None:
         max_length = max(len(desc) for desc in encoded_descriptions)
@@ -167,10 +165,6 @@ class TextImageDataset(Dataset):
 
         return text, image
 
-
-
-
-
 def combine_unique_sentences(list1, list2):
     """
     Combines words from two lists into new sentences and ensures the result contains
@@ -201,13 +195,6 @@ def combine_unique_sentences(list1, list2):
 
     # Return the result as a list
     return list(unique_sentences)
-
-# Example usage
-list1 = ['sentence_1 one', 'sentence_1 two']
-list2 = ['sentence_2 one', 'sentence_2 two']
-
-result = combine_unique_sentences(list1, list2)
-print(result)
 
 
 # Residual Block
@@ -324,23 +311,8 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 model = TextToImageModel().to(device)
 model.load_state_dict(torch.load( path_to_model + "text_to_image_model.pth", map_location=device))
 
-# Build Vocabulary and Generate Image
-
-
-
 
 text_list = ['insert your text descriptiom here']
-
-
-
-
-#with open(path_to_model + "random_list", "rb") as fp:   # Unpickling
-#    text_img = pickle.load(fp)
-
-#text_list = text_list+ text_list2
-
-
-
 
 sample = text_list #sample + [text_list[-5]]
 
