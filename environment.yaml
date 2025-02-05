@@ -1,0 +1,15 @@
+name: text_to_image_env
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.8
+  - pytorch
+  - torchvision
+  - torchaudio
+  - tqdm
+  - pillow
+  - pip
+  - pip:
+      - numpy
+      - matplotlib
