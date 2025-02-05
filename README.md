@@ -2,6 +2,32 @@
 
 This repository contains a PyTorch-based deep learning model that generates images from textual descriptions. The model leverages a combination of **LSTM-based text encoding, multi-head self-attention, and convolutional upsampling** to generate images from input text sequences.
 
+## Why Combine LSTM with Self-Attention?  
+
+Combining **LSTM** with **self-attention** allows the model to leverage the **strengths of both architectures** while compensating for their weaknesses.  
+
+### 1. LSTM Captures Sequential Patterns (Short-Term Context)  
+- LSTMs process text **sequentially**, which means they are good at capturing **local dependencies** and **order-sensitive** information.  
+- They handle **long-term dependencies better than vanilla RNNs**, but they **still struggle with very long sequences** due to memory constraints.  
+
+### 2. Self-Attention Captures Global Context Efficiently  
+- **Self-attention** (like in Transformers) allows the model to **look at the entire sequence at once** instead of processing it step by step.  
+- This helps capture **long-range dependencies** and relationships between words that might be far apart.  
+- Unlike LSTMs, self-attention does not suffer from **vanishing gradients** over long sequences.  
+
+### 3. Hybrid Approach = Best of Both Worlds  
+By combining an **LSTM with self-attention**, we get:  
+✅ **LSTM for local context & sequential understanding**  
+✅ **Self-attention for capturing global dependencies**  
+
+### 4. How it Works in this Model  
+- The LSTM **processes the input sequentially**, learning relationships between neighboring tokens.  
+- Then, the **self-attention mechanism** (via `MultiHeadSelfAttention`) helps refine these representations by looking at all words at once and adjusting their importance.  
+- This makes the **text encoding more informative** before it is mapped to image features.  
+
+
+---
+
 ## Features
 - **Text Normalization & Tokenization**: Preprocesses text inputs by normalizing and tokenizing.
 - **Custom Dataset Class**: Handles loading image-text pairs.
@@ -92,6 +118,4 @@ This project is open-source under the MIT License.
 ---
 ### Contributions & Issues
 Feel free to open an issue or a pull request for improvements!
-
-Happy coding! 🚀
 
